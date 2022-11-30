@@ -12,7 +12,6 @@ import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class UserTest {
 
@@ -60,9 +59,9 @@ public class UserTest {
         support.contactCustomer(customer);
 
         assertFalse(Objects.isNull(support.getId()));
-        assertFalse(Objects.isNull(support.getName()));
-        assertFalse(Objects.isNull(support.getEmail()));
-        assertFalse(Objects.isNull(support.getPhone()));
+        assertEquals(support.getName(), "Support");
+        assertEquals(support.getEmail(), "support@gmail.com");
+        assertEquals(support.getPhone(), "111111");
         assertEquals(support.getRole(), Role.SUPPORT);
     }
 
@@ -74,9 +73,9 @@ public class UserTest {
         delivery.contactCustomer(customer);
 
         assertFalse(Objects.isNull(delivery.getId()));
-        assertFalse(Objects.isNull(delivery.getName()));
-        assertFalse(Objects.isNull(delivery.getEmail()));
-        assertFalse(Objects.isNull(delivery.getPhone()));
+        assertEquals(delivery.getName(), "Delivery");
+        assertEquals(delivery.getEmail(), "delivery@gmail.com");
+        assertEquals(delivery.getPhone(), "222222");
         assertFalse(Objects.isNull(delivery.getDeliveryZones()));
         assertEquals(delivery.getRole(), Role.DELIVERY);
     }
@@ -90,9 +89,9 @@ public class UserTest {
         customer.contactSupport();
 
         assertFalse(Objects.isNull(customer.getId()));
-        assertFalse(Objects.isNull(customer.getName()));
-        assertFalse(Objects.isNull(customer.getEmail()));
-        assertFalse(Objects.isNull(customer.getPhone()));
+        assertEquals(customer.getName(), "Customer");
+        assertEquals(customer.getEmail(), "customer@gmail.com");
+        assertEquals(customer.getPhone(), "333333");
         assertEquals(customer.getRole(), Role.USER);
     }
 }
