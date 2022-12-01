@@ -1,4 +1,3 @@
-import com.food.DeliveryZone;
 import com.food.Order;
 import com.food.user.Customer;
 import com.food.user.Delivery;
@@ -7,7 +6,6 @@ import com.food.user.Support;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
@@ -15,47 +13,26 @@ import static org.junit.Assert.assertFalse;
 
 public class UserTest {
 
+    Order order;
     Support support;
     Delivery delivery;
     Customer customer;
 
     @Before
     public void setup() {
-        support = new Support(
-                "Support",
-                "support@gmail.com",
-                "111111"
-        );
-
-        delivery = new Delivery(
-                "Delivery",
-                "delivery@gmail.com",
-                "222222",
-                List.of(
-                        new DeliveryZone(),
-                        new DeliveryZone(),
-                        new DeliveryZone()
-                )
-        );
-
-        customer = new Customer(
-                "Customer",
-                "customer@gmail.com",
-                "333333",
-                List.of(
-                        "Address 1",
-                        "Address 2"
-                )
-        );
+        customer = DataGenerator.generateUser();
+        order = DataGenerator.generateOrder(customer);
+        support = DataGenerator.generateSupport();
+        delivery = DataGenerator.generateDelivery();
     }
 
     @Test
     public void shouldSupportUserWork() {
-        support.createOrder(new Order());
+        support.createOrder(order);
         support.getOrders();
-        support.cancelOrder(new Order());
+        support.cancelOrder(order);
         support.contactDelivery(delivery);
-        support.checkDeliveryZone(delivery, new DeliveryZone());
+        support.checkDeliveryZone(delivery, DataGenerator.generateDeliveryZone());
         support.contactCustomer(customer);
 
         assertFalse(Objects.isNull(support.getId()));
@@ -67,9 +44,9 @@ public class UserTest {
 
     @Test
     public void shouldDeliveryUserWork() {
-        delivery.createOrder(new Order());
+        delivery.createOrder(order);
         delivery.getOrders();
-        delivery.cancelOrder(new Order());
+        delivery.cancelOrder(order);
         delivery.contactCustomer(customer);
 
         assertFalse(Objects.isNull(delivery.getId()));
@@ -82,9 +59,9 @@ public class UserTest {
 
     @Test
     public void shouldCustomerUserWork() {
-        customer.createOrder(new Order());
+        customer.createOrder(order);
         customer.getOrders();
-        customer.cancelOrder(new Order());
+        customer.cancelOrder(order);
         customer.contactDelivery(delivery);
         customer.contactSupport();
 
