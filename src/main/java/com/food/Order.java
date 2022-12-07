@@ -15,15 +15,6 @@ public class Order {
     private final String houseNumber;
     private final LocalDateTime createdAt;
     private final Map<Dish, Integer> items;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public Delivery getDelivery() {
-        return delivery;
-    }
-
     private Delivery delivery;
     private OrderStatus status;
     private LocalDateTime updatedAt;
@@ -40,6 +31,18 @@ public class Order {
         this.status = status;
         this.createdAt = LocalDateTime.now();
         this.items = new HashMap<>();
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     public String getId() {
@@ -83,11 +86,13 @@ public class Order {
         return items;
     }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
+    public Boolean checkValidItems() {
+        System.out.println("Checking order items: " + getItems());
+        return null;
     }
 
-    public Boolean checkValidItems() {
-        return null;
+    public void cancel() {
+        System.out.println("Canceling order: " + getId());
+        this.setStatus(OrderStatus.CANCELED);
     }
 }

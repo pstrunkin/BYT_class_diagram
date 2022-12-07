@@ -14,14 +14,4 @@ public class Customer extends User {
     public List<String> getAddresses() {
         return addresses;
     }
-
-    public void contactDelivery(Delivery delivery) {
-
-    }
-
-    public void contactSupport() {
-
-    }
-
-
 }

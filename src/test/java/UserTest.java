@@ -6,6 +6,7 @@ import com.food.user.Support;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
@@ -28,12 +29,7 @@ public class UserTest {
 
     @Test
     public void shouldSupportUserWork() {
-        support.createOrder(order);
-        support.getOrders();
-        support.cancelOrder(order);
-        support.contactDelivery(delivery);
-        support.checkDeliveryZone(delivery, DataGenerator.generateDeliveryZone());
-        support.contactCustomer(customer);
+        support.contact();
 
         assertFalse(Objects.isNull(support.getId()));
         assertEquals(support.getName(), "Support");
@@ -44,10 +40,7 @@ public class UserTest {
 
     @Test
     public void shouldDeliveryUserWork() {
-        delivery.createOrder(order);
-        delivery.getOrders();
-        delivery.cancelOrder(order);
-        delivery.contactCustomer(customer);
+        delivery.contact();
 
         assertFalse(Objects.isNull(delivery.getId()));
         assertEquals(delivery.getName(), "Delivery");
@@ -59,16 +52,16 @@ public class UserTest {
 
     @Test
     public void shouldCustomerUserWork() {
-        customer.createOrder(order);
-        customer.getOrders();
-        customer.cancelOrder(order);
-        customer.contactDelivery(delivery);
-        customer.contactSupport();
+        customer.contact();
 
         assertFalse(Objects.isNull(customer.getId()));
         assertEquals(customer.getName(), "Customer");
         assertEquals(customer.getEmail(), "customer@gmail.com");
         assertEquals(customer.getPhone(), "333333");
+        assertEquals(customer.getAddresses(), List.of(
+                "street_1_1",
+                "street_1_2"
+        ));
         assertEquals(customer.getRole(), Role.USER);
     }
 }

@@ -1,8 +1,5 @@
 package com.food.user;
 
-import com.food.Order;
-
-import java.util.List;
 import java.util.Random;
 
 public abstract class User {
@@ -39,14 +36,7 @@ public abstract class User {
         return role;
     }
 
-    public Order createOrder(Order order) {
-        return null;
-    }
-
-    public List<Order> getOrders() {
-        return null;
-    }
-
-    public void cancelOrder(Order order) {
+    public void contact() {
+        System.out.println("Contacting: " + getName());
     }
 }

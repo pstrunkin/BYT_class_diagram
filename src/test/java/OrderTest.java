@@ -3,7 +3,6 @@ import com.food.Order;
 import com.food.OrderStatus;
 import com.food.user.Customer;
 import com.food.user.Delivery;
-import com.food.user.Support;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +27,7 @@ public class OrderTest {
 
     @Test
     public void shouldOrder() {
+        order.cancel();
         order.setRating(4);
         order.setStatus(OrderStatus.DELIVERED);
         order.getItems().put(dish, 11);

@@ -19,10 +19,4 @@ public class Delivery extends User {
     public List<DeliveryZone> getDeliveryZones() {
         return deliveryZones;
     }
-
-    public void contactCustomer(Customer customer) {
-
-    }
-
-
 }
